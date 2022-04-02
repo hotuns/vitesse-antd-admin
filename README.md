@@ -3,194 +3,173 @@
 </p>
 
 <p align='center'>
-Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
+快速地<sup><em>Vitesse</em></sup> 创建 Web 应用
+<br> 
 </p>
 
 <br>
 
 <p align='center'>
-<a href="https://vitesse.netlify.app/">Live Demo</a>
+<a href="https://vitesse.netlify.app/">在线 Demo</a>
 </p>
 
 <br>
 
 <p align='center'>
-<b>English</b> | <a href="https://github.com/antfu/vitesse/blob/main/README.zh-CN.md">简体中文</a>
-<!-- Contributors: Thanks for geting interested, however we DON'T accept new transitions to the README, thanks. -->
+<a href="https://github.com/antfu/vitesse/blob/main/README.md">English</a> | <b>简体中文</b>
 </p>
 
 <br>
 
-## Features
+## 特性
 
-- ⚡️ [Vue 3](https://github.com/vuejs/vue-next), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/), [ESBuild](https://github.com/evanw/esbuild) - born with fastness
+- ⚡️ [Vue 3](https://github.com/vuejs/vue-next), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/), [ESBuild](https://github.com/evanw/esbuild) - 就是快！
 
-- 🗂 [File based routing](./src/pages)
+- 🗂 [基于文件的路由](./src/pages)
 
-- 📦 [Components auto importing](./src/components)
+- 📦 [组件自动化加载](./src/components)
 
-- 🍍 [State Management via Pinia](https://pinia.esm.dev/)
+- 🍍 [使用 Pinia 的状态管理](https://pinia.esm.dev/)
 
-- 📑 [Layout system](./src/layouts)
+- 📑 [布局系统](./src/layouts)
 
-- 📲 [PWA](https://github.com/antfu/vite-plugin-pwa)
 
-- 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
+- 🎨 [UnoCSS](https://github.com/unocss/unocss) - 高性能且极具灵活性的即时原子化 CSS 引擎
 
-- 😃 [Use icons from any icon sets with classes](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
+- 😃 [各种图标集为你所用](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
 
-- 🌍 [I18n ready](./locales)
+- 🌍 [I18n 国际化开箱即用](./locales)
 
-- 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-md)
+- 🗒 [Markdown 支持](https://github.com/antfu/vite-plugin-md)
 
-- 🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227)
+- 🔥 使用 [新的 `<script setup>` 语法](https://github.com/vuejs/rfcs/pull/227)
 
-- 🤙🏻 [Reactivity Transform](https://vuejs.org/guide/extras/reactivity-transform.html) enabled
+- 🤙🏻 默认开启 [响应性语法糖](https://vuejs.org/guide/extras/reactivity-transform.html) 
 
-- 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import) - use Composition API and others directly
+- 📥 [API 自动加载](https://github.com/antfu/unplugin-auto-import) - 直接使用 Composition API 无需引入
 
-- 🖨 Static-site generation (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg)
 
-- 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters)
 
-- 🦾 TypeScript, of course
+- 🦾 TypeScript, 当然
 
-- ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest), E2E Testing with [Cypress](https://cypress.io/) on [GitHub Actions](https://github.com/features/actions)
+- ⚙️ 结合 [GitHub Actions](https://github.com/features/actions)，使用 [Vitest](https://github.com/vitest-dev/vitest) 进行单元测试, [Cypress](https://cypress.io/) 进行 E2E 测试
 
-- ☁️ Deploy on Netlify, zero-config
+- ☁️ 零配置部署 Netlify
 
 <br>
 
-## Pre-packed
+## 预配置
 
-### UI Frameworks
+### UI 框架
 
-- [UnoCSS](https://github.com/antfu/unocss) - The instant on-demand atomic CSS engine.
+- [UnoCSS](https://github.com/antfu/unocss) - 高性能且极具灵活性的即时原子化 CSS 引擎
 
 ### Icons
 
-- [Iconify](https://iconify.design) - use icons from any icon sets [🔍Icônes](https://icones.netlify.app/)
-- [Pure CSS Icons via UnoCSS](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
+- [Iconify](https://iconify.design) - 使用任意的图标集，浏览：[🔍Icônes](https://icones.netlify.app/)
+- [UnoCSS 的纯 CSS 图标方案](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
 
-### Plugins
+### 插件
 
 - [Vue Router](https://github.com/vuejs/vue-router)
-  - [`vite-plugin-pages`](https://github.com/hannoeru/vite-plugin-pages) - file system based routing
-  - [`vite-plugin-vue-layouts`](https://github.com/JohnCampionJr/vite-plugin-vue-layouts) - layouts for pages
-- [Pinia](https://pinia.esm.dev) - Intuitive, type safe, light and flexible Store for Vue using the composition api
-- [`unplugin-vue-components`](https://github.com/antfu/unplugin-vue-components) - components auto import
-- [`unplugin-auto-import`](https://github.com/antfu/unplugin-auto-import) - Directly use Vue Composition API and others without importing
-- [`vite-plugin-pwa`](https://github.com/antfu/vite-plugin-pwa) - PWA
-- [`vite-plugin-md`](https://github.com/antfu/vite-plugin-md) - Markdown as components / components in Markdown
-  - [`markdown-it-prism`](https://github.com/jGleitz/markdown-it-prism) - [Prism](https://prismjs.com/) for syntax highlighting
-  - [`prism-theme-vars`](https://github.com/antfu/prism-theme-vars) - customizable Prism.js theme using CSS variables
-- [Vue I18n](https://github.com/intlify/vue-i18n-next) - Internationalization
-  - [`vite-plugin-vue-i18n`](https://github.com/intlify/vite-plugin-vue-i18n) - Vite plugin for Vue I18n
-- [VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
-- [`vite-ssg-sitemap`](https://github.com/jbaubree/vite-ssg-sitemap) - Sitemap generator
-- [`@vueuse/head`](https://github.com/vueuse/head) - manipulate document head reactively
+  - [`vite-plugin-pages`](https://github.com/hannoeru/vite-plugin-pages) - 以文件系统为基础的路由
+  - [`vite-plugin-vue-layouts`](https://github.com/JohnCampionJr/vite-plugin-vue-layouts) - 页面布局系统
+- [Pinia](https://pinia.esm.dev) - 直接的, 类型安全的, 使用 Composition api 的轻便灵活的 Vue 状态管理
+- [`unplugin-vue-components`](https://github.com/antfu/unplugin-vue-components) - 自动加载组件
+- [`unplugin-auto-import`](https://github.com/antfu/unplugin-auto-import) - 直接使用 Composition API 等，无需导入
+- [`vite-plugin-md`](https://github.com/antfu/vite-plugin-md) - Markdown 作为组件，也可以让组件在 Markdown 中使用
+  - [`markdown-it-prism`](https://github.com/jGleitz/markdown-it-prism) - [Prism](https://prismjs.com/) 的语法高亮
+  - [`prism-theme-vars`](https://github.com/antfu/prism-theme-vars) - 利用 CSS 变量自定义 Prism.js 的主题
+- [Vue I18n](https://github.com/intlify/vue-i18n-next) - 国际化
+  - [`vite-plugin-vue-i18n`](https://github.com/intlify/vite-plugin-vue-i18n) - Vue I18n 的 Vite 插件
+- [VueUse](https://github.com/antfu/vueuse) - 实用的 Composition API 工具合集
+- [`vite-ssg-sitemap`](https://github.com/jbaubree/vite-ssg-sitemap) - 站点地图生成器
+- [`@vueuse/head`](https://github.com/vueuse/head) - 响应式地操作文档头信息
 
-### Coding Style
+### 编码风格
 
-- Use Composition API with [`<script setup>` SFC syntax](https://github.com/vuejs/rfcs/pull/227)
-- [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config), single quotes, no semi.
+- 使用 Composition API 地 [`<script setup>` SFC 语法](https://github.com/vuejs/rfcs/pull/227)
+- [ESLint](https://eslint.org/) 配置为 [@antfu/eslint-config](https://github.com/antfu/eslint-config), 单引号, 无分号.
 
-### Dev tools
-
+### 开发工具
 - [TypeScript](https://www.typescriptlang.org/)
-- [Vitest](https://github.com/vitest-dev/vitest) - Unit testing powered by Vite
-- [Cypress](https://cypress.io/) - E2E testing
-- [pnpm](https://pnpm.js.org/) - fast, disk space efficient package manager
-- [`vite-ssg`](https://github.com/antfu/vite-ssg) - Static-site generation
-  - [critters](https://github.com/GoogleChromeLabs/critters) - Critical CSS
-- [Netlify](https://www.netlify.com/) - zero-config deployment
-- [VS Code Extensions](./.vscode/extensions.json)
-  - [Vite](https://marketplace.visualstudio.com/items?itemName=antfu.vite) - Fire up Vite server automatically
-  - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) - Vue 3 `<script setup>` IDE support
-  - [Iconify IntelliSense](https://marketplace.visualstudio.com/items?itemName=antfu.iconify) - Icon inline display and autocomplete
-  - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally) - All in one i18n support
+- [Vitest](https://github.com/vitest-dev/vitest) - 基于 Vite 的单元测试框架
+- [pnpm](https://pnpm.js.org/) - 快, 节省磁盘空间的包管理器
+- [`vite-ssg`](https://github.com/antfu/vite-ssg) - 服务端生成
+- [Netlify](https://www.netlify.com/) - 零配置的部署
+- [VS Code 扩展](./.vscode/extensions.json)
+  - [Vite](https://marketplace.visualstudio.com/items?itemName=antfu.vite) - 自动启动 Vite 服务器
+  - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) - Vue 3 `<script setup>` IDE 支持
+  - [Iconify IntelliSense](https://marketplace.visualstudio.com/items?itemName=antfu.iconify) - 图标内联显示和自动补全
+  - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally) - 多合一的 I18n 支持
   - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-## Variations
+## 衍生项目
 
-As this template is strongly opinionated, the following provides a curated list for community-maintained variations with different preferences and feature sets. Check them out as well. PR to add yours is also welcome!
+由于这个模板的业务场景非常的局限，下面提供了一个精心策划的列表，列出了社区维护的具有不同偏好和功能集的衍生项目。也可以看看他们。当然也欢迎你 PR 提供自己的项目！
 
-###### Official
+###### 官方
 
-- [vitesse-lite](https://github.com/antfu/vitesse-lite) - Lightweight version of Vitesse
-- [vitesse-nuxt3](https://github.com/antfu/vitesse-nuxt3) - Vitesse for Nuxt 3
-- [vitesse-nuxt-bridge](https://github.com/antfu/vitesse-nuxt-bridge) - Vitesse for Nuxt 2 with Bridge
-- [vitesse-webext](https://github.com/antfu/vitesse-webext) - WebExtension Vite starter template
+- [vitesse-lite](https://github.com/antfu/vitesse-lite) - Vitesse 的轻量版本
+- [vitesse-nuxt3](https://github.com/antfu/vitesse-nuxt3) - Vitesse 的 Nuxt 3 版本
+- [vitesse-nuxt-bridge](https://github.com/antfu/vitesse-nuxt-bridge) - Vitesse 的 Nuxt2 桥接版本
+- [vitesse-webext](https://github.com/antfu/vitesse-webext) - 开箱即用的浏览器扩展 vite 模板
 
-###### Community
+###### 社区
 
-- [vitesse-addons](https://github.com/JohnCampionJr/vitesse-addons) by [@johncampionjr](https://github.com/johncampionjr) - additional options for integrations, including [Prettier](https://prettier.io) and [Storybook](https://storybook.js.org)
-- [vitesse-ssr-template](https://github.com/frandiox/vitesse-ssr-template) by [@frandiox](https://github.com/frandiox) - Vitesse with SSR
-- [vitespa](https://github.com/ctholho/vitespa) by [@ctholho](https://github.com/ctholho) - Like Vitesse but without SSG/SSR
-- [vitailse](https://github.com/zynth17/vitailse) by [@zynth17](https://github.com/zynth17) - Like Vitesse but with TailwindCSS
-- [vitesse-modernized-chrome-ext](https://github.com/xiaoluoboding/vitesse-modernized-chrome-ext) by [@xiaoluoboding](https://github.com/xiaoluoboding) - ⚡️ Modernized Chrome Extension Manifest V3 Vite Starter Template
-- [vitesse-stackter-clean-architect](https://github.com/shamscorner/vitesse-stackter-clean-architect) by [@shamscorner](https://github.com/shamscorner) - A modular clean architecture pattern in vitesse template
-- [vitesse-enterprise](https://github.com/FranciscoKloganB/vitesse-enterprise) by [@FranciscoKloganB](https://github.com/FranciscoKloganB) - Consistent coding styles regardless of team-size.
-- [vitecamp](https://github.com/nekobc1998923/vitecamp) by [@nekobc1998923](https://github.com/nekobc1998923) - Like Vitesse but without SSG/SSR/File based routing, includes Element Plus
-- [vitesse-lite-react](https://github.com/lxy-yz/vitesse-lite-react) by [@lxy-yz](https://github.com/lxy-yz) - vitesse-lite React fork
+[查看英文版](./README.md#community)
 
-## Try it now!
+## 现在可以试试!
 
-> Vitesse requires Node >=14
+> Vitesse 需要 Node 版本 >=14
 
-### GitHub Template
+### GitHub 模板
 
-[Create a repo from this template on GitHub](https://github.com/antfu/vitesse/generate).
+[使用这个模板创建仓库](https://github.com/antfu/vitesse/generate).
 
-### Clone to local
+### 克隆到本地
 
-If you prefer to do it manually with the cleaner git history
+如果您更喜欢使用更干净的 git 历史记录手动执行此操作
 
 ```bash
 npx degit antfu/vitesse my-vitesse-app
 cd my-vitesse-app
-pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
+pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 ```
 
-## Checklist
+## 清单
 
-When you use this template, try follow the checklist to update your info properly
+使用此模板时，请尝试按照清单正确更新您自己的信息
 
-- [ ] Change the author name in `LICENSE`
-- [ ] Change the title in `App.vue`
-- [ ] Change the hostname in `vite.config.ts`
-- [ ] Change the favicon in `public`
-- [ ] Remove the `.github` folder which contains the funding info
-- [ ] Clean up the READMEs and remove routes
+- [ ] 在 `LICENSE` 中改变作者名
+- [ ] 在 `App.vue` 中改变标题
+- [ ] 在 `vite.config.ts` 更改主机名
+- [ ] 在 `public` 目录下改变favicon
+- [ ] 移除 `.github` 文件夹中包含资助的信息
+- [ ] 整理 README 并删除路由
 
-And, enjoy :)
+紧接着, 享受吧 :)
 
-## Usage
+## 使用
 
-### Development
+### 开发
 
-Just run and visit http://localhost:3333
+只需要执行以下命令就可以在 http://localhost:3333 中看到
 
 ```bash
 pnpm dev
 ```
 
-### Build
+### 构建
 
-To build the App, run
+构建该应用只需要执行以下命令
 
 ```bash
 pnpm build
 ```
 
-And you will see the generated file in `dist` that ready to be served.
+然后你会看到用于发布的 `dist` 文件夹被生成。
 
-### Deploy on Netlify
+### 部署到 Netlify
 
-Go to [Netlify](https://app.netlify.com/start) and select your clone, `OK` along the way, and your App will be live in a minute.
-
-## Why
-
-I have created several Vite apps recently. Setting the configs up is kinda the bottleneck for me to make the ideas simply come true within a very short time.
-
-So I made this starter template for myself to create apps more easily, along with some good practices that I have learned from making those apps. It's strongly opinionated, but feel free to tweak it or even maintains your own forks. [(see community maintained variation forks)](#variations)
+前往 [Netlify](https://app.netlify.com/start) 并选择你的仓库, 一路 `OK` 下去，稍等一下后，你的应用将被创建.
