@@ -1,7 +1,5 @@
-import { Layout, Menu, Space } from 'ant-design-vue'
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
+import { Layout, Menu } from 'ant-design-vue'
 import type { PropType } from 'vue'
-import { Transition, h } from 'vue'
 import type { MenuDataItem } from '../utils/typings'
 import Icon from '~/components/Icon/index.vue'
 import { router } from '~/router'
@@ -79,13 +77,11 @@ export default defineComponent({
           width={208}
           collapsedWidth={54}
           class="my-sideMenu-sider"
-          theme="light"
           trigger={null}
           breakpoint="lg"
           onBreakpoint={val => (state.collapsed = val)}
           collapsible
           collapsed={state.collapsed}
-          // collapsedWidth={48}
         >
           {/* logo */}
           {/* <Transition name="fade-top">
@@ -100,24 +96,25 @@ export default defineComponent({
           </Transition> */}
           {/* menu */}
           <Menu
+
             theme="light"
             mode="inline"
             selectedKeys={state.selectedKeys}
             {...(state.collapsed ? {} : { openKeys: state.openKeys })}
             onOpenChange={(keys: any[]) => (state.openKeys = keys)}
             onSelect={onSelect}
-            class="my-sideMenu-sider_menu"
+            class="h-full"
           >
             {makeTreeDom(props.menuData)}
           </Menu>
           {/* footer */}
-          <div className="my-sideMenu-sider_footer">
+          {/* <div className="my-sideMenu-sider_footer">
             {h(state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               style: { fontSize: 16 },
               onClick: () => (state.collapsed = !state.collapsed),
             })}
-          </div>
+          </div> */}
         </Layout.Sider>
       )
     }

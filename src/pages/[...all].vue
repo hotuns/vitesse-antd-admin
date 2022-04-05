@@ -1,6 +1,8 @@
-<script setup lang="ts">
-const { t } = useI18n()
-</script>
+
+<route lang="yaml">
+meta:
+  layout: blank
+</route>
 
 <template>
   <a-result status="404" title="404" :sub-title="t('not-found')">
@@ -12,7 +14,6 @@ const { t } = useI18n()
   </a-result>
 </template>
 
-<route lang="yaml">
-meta:
-  layout: blank
-</route>
+<script setup lang="ts">
+const { t } = useI18n()
+</script>

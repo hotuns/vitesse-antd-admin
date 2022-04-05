@@ -14,3 +14,6 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare module '@zougt/vite-plugin-theme-preprocessor';
+declare module '@zougt/vite-plugin-theme-preprocessor/dist/browser-utils.js';

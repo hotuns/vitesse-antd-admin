@@ -2,9 +2,9 @@
 meta:
   layout: default
   title: 用户管理
-  keepAlive: true
   icon: home
   auth: [home]
+  index: 1
 </route>
 
 <template>
@@ -72,7 +72,7 @@ watch(
   (val) => {
     columns.value = KeyValue.map(n => ({
       ...n,
-      value: toRaw(val)?.[n.key] || n.value,
+      value: (toRaw(val) as any)?.[n.key] || n.value,
     }))
   },
 )

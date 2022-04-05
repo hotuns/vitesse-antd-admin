@@ -13,8 +13,12 @@ import Inspect from 'vite-plugin-inspect'
 import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
+import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { viteMockServe } from 'vite-plugin-mock'
+import themePreprocessorPlugin from '@zougt/vite-plugin-theme-preprocessor'
+import OptimizationPersist from 'vite-plugin-optimize-persist'
+import PkgConfig from 'vite-plugin-package-config'
 
 import { AntDesignVueResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
 
@@ -34,6 +38,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
 
     plugins: [
+
+      // 将包信息文件作为 vite 的配置文件之一，为 vite-plugin-optimize-persist 所用
+      PkgConfig(),
+
+      // 依赖预构建分析，提高大型项目性能
+      OptimizationPersist(),
+
       Vue({
         include: [/\.vue$/, /\.md$/],
         reactivityTransform: true,
@@ -45,6 +56,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       Pages({
         extensions: ['vue', 'tsx', 'md'],
         exclude: ['**/components/*.vue', '**/components/**/*.vue', '**/components/*.tsx', '**/components/**/*.tsx'],
+      }),
+
+      // https://icones.netlify.app/
+      Icons({
+        autoInstall: true,
       }),
 
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -128,6 +144,24 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
      
            setupProdMockServer();
            `,
+      }),
+
+      themePreprocessorPlugin({
+        less: {
+          // 各个主题文件的位置
+          multipleScopeVars: [
+            {
+              scopeName: 'light',
+              path: path.resolve('src/styles/light.less'),
+            },
+            {
+              scopeName: 'dark',
+              path: path.resolve('src/styles/dark.less'),
+            },
+          ],
+          defaultScopeName: 'light', // 默认取 multipleScopeVars[0].scopeName
+          extract: false, // 在生产模式是否抽取独立的主题css文件
+        },
       }),
     ],
 

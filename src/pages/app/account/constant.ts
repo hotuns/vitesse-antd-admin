@@ -26,4 +26,4 @@ export const KeyValue = [
     key: 'last_login',
     value: '',
   },
-];
+]

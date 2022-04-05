@@ -47,5 +47,11 @@ export const filterRoutes = (menusData: RouteRecordRaw[]): RouteRecordRaw[] => {
       n.children.forEach(({ path }) => filterRoutes.push(path))
   })
 
+  menusData.sort((a, b) => {
+    const aIndex = (a.meta?.index || 0) as number
+    const bIndex = (b.meta?.index || 0) as number
+    return aIndex - bIndex
+  })
+
   return menusData.filter(({ path }) => !filterRoutes.includes(path))
 }

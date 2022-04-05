@@ -4,6 +4,7 @@ meta:
   title: 其他
   icon: home
   auth: [home]
+  index: 3
 </route>
 
 <template>

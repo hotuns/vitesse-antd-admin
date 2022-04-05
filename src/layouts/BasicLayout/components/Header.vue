@@ -1,18 +1,17 @@
 <template>
-  <a-layout-header class="header">
-    <div class="logo-wrap">
-      <router-link :to="{ path: '/' }">
-        <img :src="logo" class="logo">
-        <h1 class="title">
+  <div class="header bg-white  dark:bg-black">
+    <router-link :to="{ path: '/' }" style="height:100%;display: inline-block;">
+      <div class="flex h-full items-center">
+        <img :src="logo" class="logo" style="height: 100%;">
+        <span class="text-xl">
           {{ APP_TITLE }}
-        </h1>
+        </span>
         <!-- <span class="subTitle">基础版</span> -->
-      </router-link>
-    </div>
-    <div>
-      <RightContent />
-    </div>
-  </a-layout-header>
+      </div>
+    </router-link>
+
+    <RightContent />
+  </div>
 </template>
 <script setup lang="ts">
 
@@ -28,27 +27,8 @@ const APP_TITLE = import.meta.env.VITE_APP_TITLE
     justify-content: space-between;
     height: 100%;
     height: 80px;
-    padding: 0 16px;
-    background: #ffffff;
+    padding: 10px 16px;
     box-shadow: 0 1px 4px #00152914;
     z-index: 1;
-    .logo-wrap {
-      height: 100%;
-      a {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
-      .title {
-        margin: 0;
-        margin-left: 12px;
-        font-size: 18px;
-        color: #000000;
-      }
-      .logo {
-        width: 48px;
-        height: 48px;
-      }
-    }
   }
 </style>

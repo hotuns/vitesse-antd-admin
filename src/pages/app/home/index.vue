@@ -4,6 +4,7 @@ meta:
   title: 首页
   icon: home
   auth: [home]
+  index: 0
 </route>
 
 <template>
