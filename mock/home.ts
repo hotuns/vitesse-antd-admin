@@ -1,5 +1,5 @@
-import Mock from 'mockjs';
-import { resultSuccess } from './_util';
+import Mock from 'mockjs'
+import { resultSuccess } from './_util'
 
 const list = Mock.mock({
   'items|30': [
@@ -16,7 +16,7 @@ const list = Mock.mock({
       email: '@email',
     },
   ],
-});
+})
 
 const data = {
   hu_num: 42,
@@ -62,28 +62,28 @@ const data = {
       time: '20211124',
     },
   ],
-};
+}
 
 export default [
   {
     url: '/v1/home/info',
     method: 'get',
     response: () => {
-      return resultSuccess(data);
+      return resultSuccess(data)
     },
   },
   {
     url: '/v1/home/list',
     method: 'get',
     response: () => {
-      const items = list.items;
+      const items = list.items
       return {
         code: 0,
         result: {
           total: items.length,
           list: items,
         },
-      };
+      }
     },
   },
-];
+]

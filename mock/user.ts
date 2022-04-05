@@ -1,5 +1,6 @@
-import { MockMethod } from 'vite-plugin-mock';
-import { resultError, resultSuccess, getRequestToken, requestParams } from './_util';
+import type { MockMethod } from 'vite-plugin-mock'
+import type { requestParams } from './_util'
+import { getRequestToken, resultError, resultSuccess } from './_util'
 
 export function createFakeUserList() {
   return [
@@ -33,7 +34,7 @@ export function createFakeUserList() {
       mobile: 18000000000,
       last_login: '2021-11-11 12:12',
     },
-  ];
+  ]
 }
 
 export default [
@@ -43,27 +44,27 @@ export default [
     timeout: 200,
     method: 'post',
     response: ({ body }) => {
-      const { username, password } = body;
+      const { username, password } = body
       const checkUser = createFakeUserList().find(
-        (item) => item.username === username && password === item.password,
-      );
-      if (!checkUser) {
-        return resultError('Incorrect account or password！');
-      }
-      return resultSuccess(checkUser);
+        item => item.username === username && password === item.password,
+      )
+      if (!checkUser)
+        return resultError('Incorrect account or password！')
+
+      return resultSuccess(checkUser)
     },
   },
   {
     url: '/v1/user/permission',
     method: 'get',
     response: (request: requestParams) => {
-      const token = getRequestToken(request);
-      if (!token) return resultError('Invalid token');
-      const checkUser = createFakeUserList().find((item) => item.token === token);
-      if (!checkUser) {
-        return resultError('The corresponding user information was not obtained!');
-      }
-      return resultSuccess(checkUser);
+      const token = getRequestToken(request)
+      if (!token) return resultError('Invalid token')
+      const checkUser = createFakeUserList().find(item => item.token === token)
+      if (!checkUser)
+        return resultError('The corresponding user information was not obtained!')
+
+      return resultSuccess(checkUser)
     },
   },
   {
@@ -71,26 +72,26 @@ export default [
     timeout: 200,
     method: 'get',
     response: (request: requestParams) => {
-      const token = getRequestToken(request);
-      if (!token) return resultError('Invalid token');
-      const checkUser = createFakeUserList().find((item) => item.token === token);
-      if (!checkUser) {
-        return resultError('Invalid token!');
-      }
-      return resultSuccess(undefined, { message: 'Token has been destroyed' });
+      const token = getRequestToken(request)
+      if (!token) return resultError('Invalid token')
+      const checkUser = createFakeUserList().find(item => item.token === token)
+      if (!checkUser)
+        return resultError('Invalid token!')
+
+      return resultSuccess(undefined, { message: 'Token has been destroyed' })
     },
   },
   {
     url: '/v1/account/info',
     method: 'get',
     response: (request: requestParams) => {
-      const token = getRequestToken(request);
-      if (!token) return resultError('Invalid token');
-      const checkUser = createFakeUserList().find((item) => item.token === token);
-      if (!checkUser) {
-        return resultError('The corresponding user information was not obtained!');
-      }
-      return resultSuccess(checkUser);
+      const token = getRequestToken(request)
+      if (!token) return resultError('Invalid token')
+      const checkUser = createFakeUserList().find(item => item.token === token)
+      if (!checkUser)
+        return resultError('The corresponding user information was not obtained!')
+
+      return resultSuccess(checkUser)
     },
   },
-] as MockMethod[];
+] as MockMethod[]

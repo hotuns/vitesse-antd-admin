@@ -1,7 +1,26 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <router-view />
+  <ConfigProvider :locale="zhCN">
+    <router-view v-slot="{ Component, route }">
+      <transition name="slide">
+        <component :is="Component" :key="route" />
+      </transition>
+    </router-view>
+  </ConfigProvider>
 </template>
+
+<script lang="ts" setup>
+import { ConfigProvider } from 'ant-design-vue'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import moment from 'moment'
+import { useTitle } from '~/composables/useTitle'
+
+// date-picker 国际化失效问题
+// 引入dist下的文件：import 'moment/dist/locale/zh-cn'
+// 确保 moment版本一致
+import 'moment/dist/locale/zh-cn'
+moment.locale('zh_CN')
+
+useTitle()
+
+console.log('my config env: ', import.meta.env)
+</script>

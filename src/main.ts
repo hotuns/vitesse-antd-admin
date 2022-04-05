@@ -1,8 +1,13 @@
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
-import './styles/main.css'
+import './styles/index.less'
 import 'uno.css'
+
+import { setupGlobDirectives } from './directives'
+import { router } from '~/router'
+import { store } from '~/store'
+import './router/permission'
 
 const app = createApp(App)
 
@@ -12,5 +17,10 @@ Object.values(modules).forEach((v) => {
   if (typeof v.default === 'function')
     v.default(app)
 })
+
+app.use(store)
+app.use(router)
+
+setupGlobDirectives(app)
 
 app.mount('#app')

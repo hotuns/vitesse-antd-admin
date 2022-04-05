@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "jsx": "preserve",
     "baseUrl": ".",
     "module": "ESNext",
     "target": "es2016",
@@ -19,6 +21,7 @@
       "vite-plugin-pages/client",
       "vite-plugin-vue-layouts/client"
     ],
+    "typeRoots": ["./node_modules/@types/", "./types"],
     "paths": {
       "~/*": ["src/*"],
       "#/*": ["types/*"]
