@@ -1,7 +1,8 @@
 import { Layout, Menu } from 'ant-design-vue'
 import type { PropType } from 'vue'
+import { Icon } from '@iconify/vue'
 import type { MenuDataItem } from '../utils/typings'
-import Icon from '~/components/Icon/index.vue'
+
 import { router } from '~/router'
 import './index.less'
 
@@ -42,8 +43,6 @@ export default defineComponent({
       router.push(e.key)
     }
 
-    const getIcon = (type?: string) => (type ? <Icon type={type} /> : null)
-
     // 构建树结构
     const makeTreeDom = (data: MenuDataItem[]): JSX.Element[] => {
       return data.map((item: MenuDataItem) => {
@@ -52,10 +51,12 @@ export default defineComponent({
             <Menu.SubMenu
               key={item.path}
               title={
-                <>
-                  {getIcon(item.meta?.icon as string)}
+
+                <div className="inline-flex justify-center items-center space-x-1">
+                  <span className="ant-menu-item-icon"><Icon icon={item.meta?.icon} ></Icon></span>
                   <span>{item.meta?.title}</span>
-                </>
+                </div>
+
               }
             >
               {makeTreeDom(item.children)}
@@ -64,8 +65,13 @@ export default defineComponent({
         }
         return (
           <Menu.Item key={item.path}>
-            {getIcon(item.meta?.icon as string)}
-            <span>{item.meta?.title}</span>
+            <div className="inline-flex justify-center items-center">
+              <span className="ant-menu-item-icon"> <Icon icon={item.meta?.icon} ></Icon></span>
+              <span className="ant-menu-title-content">
+                {item.meta?.title}
+              </span>
+            </div>
+
           </Menu.Item>
         )
       })
@@ -83,38 +89,26 @@ export default defineComponent({
           collapsible
           collapsed={state.collapsed}
         >
-          {/* logo */}
-          {/* <Transition name="fade-top">
-            {!state.collapsed && (
-              <div className="my-sideMenu-sider_logo">
-                <Space align="center" class="link">
-                  <Icon type="guanlipingtai" size="20px" align="0px" />
-                  <span className="font16 nowrap">管理平台</span>
-                </Space>
-              </div>
-            )}
-          </Transition> */}
-          {/* menu */}
           <Menu
 
             theme="light"
             mode="inline"
             selectedKeys={state.selectedKeys}
-            {...(state.collapsed ? {} : { openKeys: state.openKeys })}
+            {...(state.collapsed ? {} : { openKeys: state.openKeys, inlineCollapsed: state.collapsed })}
             onOpenChange={(keys: any[]) => (state.openKeys = keys)}
             onSelect={onSelect}
             class="h-full"
           >
             {makeTreeDom(props.menuData)}
           </Menu>
-          {/* footer */}
-          {/* <div className="my-sideMenu-sider_footer">
-            {h(state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              style: { fontSize: 16 },
-              onClick: () => (state.collapsed = !state.collapsed),
-            })}
-          </div> */}
+
+          <div className="collapsed dis absolute right-1 top-1/2 border rounded-1/2 p-2" onClick={() => state.collapsed = !state.collapsed}>
+            {
+              h(Icon, {
+                icon: state.collapsed ? 'carbon:arrow-right' : 'carbon:arrow-left',
+              })
+            }
+          </div>
         </Layout.Sider>
       )
     }

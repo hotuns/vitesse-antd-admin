@@ -2,7 +2,7 @@
 meta:
   layout: default
   title: 用户管理
-  icon: home
+  icon: carbon:user
   auth: [home]
   index: 1
 </route>

@@ -56,6 +56,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { useUserStore } from '~/store/modules/user'
 
 const userStore = useUserStore()

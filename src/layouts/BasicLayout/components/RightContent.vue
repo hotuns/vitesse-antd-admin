@@ -26,12 +26,17 @@
         </a-menu>
       </template>
 
-      <span class="cursor-pointer setting">系统设置</span>
+      <a-avatar size="small">
+        <template #icon>
+          <UserOutlined />
+        </template>
+      </a-avatar>
     </a-dropdown>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { navs as myNavs } from './constant'
 import { useUserStore } from '~/store/modules/user'
 import { usePermissioStore } from '~/store/modules/permission'

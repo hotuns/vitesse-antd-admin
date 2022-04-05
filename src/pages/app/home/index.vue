@@ -2,7 +2,7 @@
 meta:
   layout: default
   title: 首页
-  icon: home
+  icon: carbon:home
   auth: [home]
   index: 0
 </route>

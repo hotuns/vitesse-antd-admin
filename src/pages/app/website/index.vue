@@ -2,7 +2,7 @@
 meta:
   layout: default
   title: 网站管理
-  icon: home
+  icon: carbon:settings-adjust
   auth: [home]
   index: 2
 </route>

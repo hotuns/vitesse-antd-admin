@@ -31,4 +31,5 @@ const APP_TITLE = import.meta.env.VITE_APP_TITLE
     box-shadow: 0 1px 4px #00152914;
     z-index: 1;
   }
+
 </style>

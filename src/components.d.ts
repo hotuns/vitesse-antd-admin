@@ -31,7 +31,6 @@ declare module 'vue' {
     Counter: typeof import('./components/Counter.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     ICarbonLanguage: typeof import('~icons/carbon/language')['default']
-    Icon: typeof import('./components/Icon/index.vue')['default']
     Modal: typeof import('./components/Modal/index.vue')['default']
     README: typeof import('./components/README.md')['default']
     Table: typeof import('./components/Table/index.vue')['default']
