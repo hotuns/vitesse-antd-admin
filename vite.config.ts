@@ -17,8 +17,6 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { viteMockServe } from 'vite-plugin-mock'
 import themePreprocessorPlugin from '@zougt/vite-plugin-theme-preprocessor'
-import OptimizationPersist from 'vite-plugin-optimize-persist'
-import PkgConfig from 'vite-plugin-package-config'
 
 import { AntDesignVueResolver, VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
 
@@ -38,12 +36,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
 
     plugins: [
-
-      // 将包信息文件作为 vite 的配置文件之一，为 vite-plugin-optimize-persist 所用
-      PkgConfig(),
-
-      // 依赖预构建分析，提高大型项目性能
-      OptimizationPersist(),
 
       Vue({
         include: [/\.vue$/, /\.md$/],
