@@ -25,12 +25,19 @@ import LoginForm from './components/Form.vue'
 const APP_TITLE = import.meta.env.VITE_APP_TITLE
 
 </script>
+
 <style lang="less" scoped>
   .login-container {
     width: 100vw;
     height: 100vh;
+    position: relative;
     background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
     .login {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 480px;
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
       // background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);

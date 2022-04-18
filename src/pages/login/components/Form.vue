@@ -51,7 +51,7 @@
       </a-form-item>
     </a-form>
     <p class="copyright">
-      @copyright JS-banana
+      @copyright HDS
     </p>
   </div>
 </template>
