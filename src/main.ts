@@ -1,3 +1,6 @@
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
@@ -11,6 +14,7 @@ import './router/permission'
 
 const app = createApp(App)
 
+app.use(Antd)
 // 插件自动加载
 const modules = import.meta.globEager('./modules/*.ts')
 Object.values(modules).forEach((v) => {
