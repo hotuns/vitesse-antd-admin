@@ -5,7 +5,7 @@
       <SideMenu v-bind="homeStore.getLayoutConf" />
       <a-layout class="basicLayout-content">
         <!-- breadcrumb -->
-        <a-card v-if="routeMeta.breadcrumb">
+        <!-- <a-card v-if="routeMeta.breadcrumb">
           <a-breadcrumb :routes="breadcrumb">
             <template #itemRender="{ route }">
               <span class="font14 color-666">
@@ -17,12 +17,12 @@
             <LeftOutlined />
             <span class="marL10">{{ title }}</span>
           </h2>
-        </a-card>
+        </a-card> -->
 
         <!-- content -->
         <a-layout-content>
           <!-- divider -->
-          <a-divider v-if="routeMeta.breadcrumb" class="line" />
+          <!-- <a-divider v-if="routeMeta.breadcrumb" class="line" /> -->
           <!-- router-view -->
           <template v-if="routeMeta.hiddenWrap">
             <!-- <router-view /> -->
@@ -42,34 +42,35 @@
   </a-layout>
 </template>
 <script setup lang="ts">
-import { LeftOutlined } from '@ant-design/icons-vue'
-import type { Route } from 'ant-design-vue/es/breadcrumb/Breadcrumb'
+// import { LeftOutlined } from '@ant-design/icons-vue'
+// import type { Route } from 'ant-design-vue/es/breadcrumb/Breadcrumb'
 import Header from './BasicLayout/components/Header.vue'
 import SideMenu from './BasicLayout/components/SideMenu'
-import { useBreadcrumbTitle } from '~/composables/useBreadcrumbTitle'
+// import { useBreadcrumbTitle } from '~/composables/useBreadcrumbTitle'
 import { useHomeStoreWithOut } from '~/store/modules/home'
 const router = useRouter()
-const { title } = useBreadcrumbTitle()
+// const { title } = useBreadcrumbTitle()
 
 const homeStore = useHomeStoreWithOut()
 
 const routeMeta = computed(() => router.currentRoute.value.meta)
 
-const breadcrumb = computed(
-  () =>
-    router.currentRoute.value.matched
-      .filter(n => !['/', '/app'].includes(n.path))
-      .map((item) => {
-        return {
-          path: item.path,
-          breadcrumbName: item.meta.title || '',
-        }
-      }) as Route[],
-)
-const handleBreadcrumb = () => {
-  const path = breadcrumb.value?.[breadcrumb.value.length - 2]?.path
-  path && router.push(path)
-}
+// const breadcrumb = computed(
+//   () =>
+//     router.currentRoute.value.matched
+//       .filter(n => !['/', '/app'].includes(n.path))
+//       .map((item) => {
+//         return {
+//           path: item.path,
+//           breadcrumbName: item.meta.title || '',
+//         }
+//       }) as Route[],
+// )
+// const handleBreadcrumb = () => {
+//   const path = breadcrumb.value?.[breadcrumb.value.length - 2]?.path
+//   path && router.push(path)
+// }
+
 </script>
 
 <style lang="less" scoped>
