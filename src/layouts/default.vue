@@ -2,7 +2,7 @@
   <a-layout class="basicLayout-wrap">
     <Header />
     <a-layout>
-      <SideMenu v-bind="layoutConf" />
+      <SideMenu v-bind="homeStore.getLayoutConf" />
       <a-layout class="basicLayout-content">
         <!-- breadcrumb -->
         <a-card v-if="routeMeta.breadcrumb">
@@ -46,24 +46,12 @@ import { LeftOutlined } from '@ant-design/icons-vue'
 import type { Route } from 'ant-design-vue/es/breadcrumb/Breadcrumb'
 import Header from './BasicLayout/components/Header.vue'
 import SideMenu from './BasicLayout/components/SideMenu'
-import { clearMenuItem, filterRoutes } from './BasicLayout/utils'
 import { useBreadcrumbTitle } from '~/composables/useBreadcrumbTitle'
-import pages from '~pages'
+import { useHomeStoreWithOut } from '~/store/modules/home'
 const router = useRouter()
 const { title } = useBreadcrumbTitle()
 
-const allRoutes = pages
-
-const menuData = filterRoutes(
-  clearMenuItem(allRoutes).filter(n => n.path.startsWith('/app/')),
-)
-console.log(menuData)
-
-const layoutConf = reactive({
-  theme: 'light',
-  menuWidth: 208,
-  menuData,
-})
+const homeStore = useHomeStoreWithOut()
 
 const routeMeta = computed(() => router.currentRoute.value.meta)
 
@@ -83,6 +71,7 @@ const handleBreadcrumb = () => {
   path && router.push(path)
 }
 </script>
+
 <style lang="less" scoped>
   .basicLayout-wrap {
     height: 100vh;

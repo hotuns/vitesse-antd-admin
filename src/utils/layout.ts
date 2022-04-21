@@ -4,7 +4,6 @@ type IRouteRecordRaw = RouteRecordRaw & { childrenPaths?: string[] }
 
 // 过滤路由属性 hideInMenu hideChildInMenu, 并且获取所有子路由的 path
 export function clearMenuItem(menusData: RouteRecord[] | RouteRecordRaw[]): RouteRecordRaw[] {
-  console.log('clearMenuItem')
   const filterHideMenus = menusData
     .map((item: RouteRecord | RouteRecordRaw) => {
       const finalItem = { ...item }

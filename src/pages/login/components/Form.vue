@@ -2,7 +2,7 @@
   <div class="form_box">
     <a-form :model="formModel" :rules="rules" @finish="handleFinish">
       <p class="text">
-        请输入手机号登录
+        请输入账号
       </p>
       <a-form-item name="username">
         <a-input
@@ -57,10 +57,13 @@
 </template>
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import type { ReqParams } from '~/api/user/model'
+import { useMessage } from '~/composables/useMessage'
 import { useUserStore } from '~/store/modules/user'
 
 const userStore = useUserStore()
 const router = useRouter()
+const { createMessage } = useMessage()
 
 const loading = ref(false)
 
@@ -93,7 +96,7 @@ watch(
 )
 
 const rules = {
-  username: [{ required: true, trigger: 'blur', message: '请输入手机号' }],
+  username: [{ required: true, trigger: 'blur', message: '请输入账号' }],
   password: [{ required: true, trigger: 'blur', message: '请输入密码' }],
 }
 
@@ -103,15 +106,14 @@ const formModel = reactive({
   password: '',
 })
 
-const handleFinish = async(values: any) => {
-  // console.log(checked, values);
+const handleFinish = async(values: ReqParams) => {
   loading.value = true
   const res = await userStore.login(values)
   loading.value = false
   if (res) {
-    // message.success('成功');
-    // router.replace({ path: state.redirect || '/', query: state.otherQuery });
-    router.replace('/')
+    createMessage.success('登录成功')
+    router.replace({ path: state.redirect || '/', query: state.otherQuery })
+    // router.replace('/')
   }
 }
 </script>
