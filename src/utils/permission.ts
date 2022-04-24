@@ -6,38 +6,26 @@
 import type { RouteRecordRaw } from 'vue-router'
 import intersection from 'lodash-es/intersection'
 
-const Reg_Module = /^\/v1\/(.+)\/.+$/
-
-// 根据 auths 过滤module
-export const filterModuleByAuths = (auths: string[]): string[] => {
-  // const reg=new RegExp(Reg_Module)
-  return auths.filter(Boolean).map((auth) => {
-    auth.match(Reg_Module)
-    const moduleName = RegExp.$1
-    // console.log(authMatch, moduleName);
-    return moduleName
-  })
-}
-
 // 不需要权限过滤的 白名单
 export const WhiteList = ['/v1/user/login', '/v1/user/permission', '/v1/account/info']
 
-interface IAuth { auth?: string[] }
+interface IAuth { roles?: string[] }
 
-export const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]): RouteRecordRaw[] => {
+export const filterAsyncRoutes = (routes: RouteRecordRaw[], userRoles: string[]): RouteRecordRaw[] => {
   const res: RouteRecordRaw[] = []
+  console.log('userRoles', userRoles)
   routes.forEach((route) => {
-    const { auth } = (route.meta as IAuth) || {}
-    if (!auth) {
+    const { roles } = (route.meta as IAuth) || {}
+    if (!roles) {
       if (route.children)
-        route.children = filterAsyncRoutes(route.children, roles)
+        route.children = filterAsyncRoutes(route.children, userRoles)
 
       res.push(route)
     }
     else {
-      if (intersection(roles, auth).length > 0) {
+      if (intersection(userRoles, roles).length > 0) {
         if (route.children)
-          route.children = filterAsyncRoutes(route.children, roles)
+          route.children = filterAsyncRoutes(route.children, userRoles)
 
         res.push(route)
       }

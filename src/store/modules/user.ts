@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
+import { useHomeStoreWithOut } from './home'
 import { store } from '~/store'
-import type { ReqParams } from '~/api/user/model'
+import type { ReqAuth, ReqParams } from '~/api/user/model'
 import fetchApi from '~/api/user'
 // import { encryptByDES } from '~/utils/crypto';
 import { getToken, removeToken, setToken } from '~/utils/auth'
@@ -8,7 +9,7 @@ import { router } from '~/router'
 
 interface UserState {
   token: string
-  auths: string[]
+  info: Nullable<ReqAuth>
 }
 
 export const useUserStore = defineStore({
@@ -16,8 +17,7 @@ export const useUserStore = defineStore({
   state: (): UserState => ({
     // token
     token: '',
-    // auths
-    auths: [],
+    info: null,
   }),
   getters: {
     getToken(): string {
@@ -29,12 +29,12 @@ export const useUserStore = defineStore({
       this.token = info ?? '' // for null or undefined value
       setToken(info)
     },
-    setAuth(auths: string[]) {
-      this.auths = auths
+    setUserInfo(info: any) {
+      this.info = info
     },
     resetState() {
       this.token = ''
-      this.auths = []
+      this.info = null
     },
     /**
      * @description: login
@@ -46,6 +46,8 @@ export const useUserStore = defineStore({
       if (res) {
         // save token
         this.setToken(res.token)
+
+        await this.getUserInfo()
       }
       return res
     },
@@ -55,10 +57,22 @@ export const useUserStore = defineStore({
      */
     async logout() {
       this.resetState()
+      const homeState = useHomeStoreWithOut()
+      homeState.$reset()
       removeToken()
       router.replace('/login')
-      // 路由表重置
-      location.reload()
+    },
+
+    async getUserInfo() {
+      if (!this.info) {
+        const res = await fetchApi.getUserInfo()
+        if (res) {
+          // save userinfo
+          this.setUserInfo(res)
+        }
+      }
+
+      return this.info
     },
   },
 })

@@ -2,7 +2,7 @@
   <a-layout class="basicLayout-wrap">
     <Header />
     <a-layout>
-      <SideMenu v-bind="homeStore.getLayoutConf" />
+      <SideMenu v-bind="layoutConfig" />
       <a-layout class="basicLayout-content">
         <!-- breadcrumb -->
         <!-- <a-card v-if="routeMeta.breadcrumb">
@@ -42,8 +42,6 @@
   </a-layout>
 </template>
 <script setup lang="ts">
-// import { LeftOutlined } from '@ant-design/icons-vue'
-// import type { Route } from 'ant-design-vue/es/breadcrumb/Breadcrumb'
 import Header from './BasicLayout/components/Header.vue'
 import SideMenu from './BasicLayout/components/SideMenu'
 // import { useBreadcrumbTitle } from '~/composables/useBreadcrumbTitle'
@@ -54,6 +52,13 @@ const router = useRouter()
 const homeStore = useHomeStoreWithOut()
 
 const routeMeta = computed(() => router.currentRoute.value.meta)
+
+const layoutConfig = ref({})
+watchEffect(async() => {
+  const config = await homeStore.getLayoutConf()
+  console.log(config)
+  layoutConfig.value = config
+})
 
 // const breadcrumb = computed(
 //   () =>

@@ -1,5 +1,4 @@
-import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.css'
+import { createHead } from '@vueuse/head'
 
 import App from './App.vue'
 
@@ -10,11 +9,9 @@ import 'uno.css'
 import { setupGlobDirectives } from './directives'
 import { router } from '~/router'
 import { store } from '~/store'
-import './router/permission'
 
 const app = createApp(App)
 
-app.use(Antd)
 // 插件自动加载
 const modules = import.meta.globEager('./modules/*.ts')
 Object.values(modules).forEach((v) => {
@@ -22,6 +19,7 @@ Object.values(modules).forEach((v) => {
     v.default(app)
 })
 
+app.use(createHead())
 app.use(store)
 app.use(router)
 

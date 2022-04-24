@@ -12,10 +12,7 @@ export function createFakeUserList() {
       desc: 'manager',
       password: '123456',
       token: 'fakeToken1',
-      auths: [],
-      modules: [],
-      is_admin: 1,
-      role_name: '管理员角色',
+      roles: ['admin', 'user'],
       mobile: 13000000000,
       last_login: '2021-11-11 12:00',
     },
@@ -27,10 +24,7 @@ export function createFakeUserList() {
       avatar: '',
       desc: 'tester',
       token: 'fakeToken2',
-      auths: [],
-      modules: ['home', 'website'],
-      is_admin: 0,
-      role_name: '普通用户角色',
+      roles: ['user'],
       mobile: 18000000000,
       last_login: '2021-11-11 12:12',
     },
@@ -50,19 +44,6 @@ export default [
       )
       if (!checkUser)
         return resultError('Incorrect account or password！')
-
-      return resultSuccess(checkUser)
-    },
-  },
-  {
-    url: '/v1/user/permission',
-    method: 'get',
-    response: (request: requestParams) => {
-      const token = getRequestToken(request)
-      if (!token) return resultError('Invalid token')
-      const checkUser = createFakeUserList().find(item => item.token === token)
-      if (!checkUser)
-        return resultError('The corresponding user information was not obtained!')
 
       return resultSuccess(checkUser)
     },

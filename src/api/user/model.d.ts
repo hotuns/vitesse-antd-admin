@@ -5,8 +5,7 @@ export interface ReqParams {
 
 export interface ReqAuth {
   auths: string[]
-  modules: string[]
-  is_admin?: 0 | 1
+  roles: string[]
 }
 
 export interface ResResult {

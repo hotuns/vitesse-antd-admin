@@ -3,7 +3,7 @@ meta:
   layout: default
   title: 网站管理
   icon: carbon:settings-adjust
-  auth: [home]
+  roles: [admin]
   index: 2
 </route>
 

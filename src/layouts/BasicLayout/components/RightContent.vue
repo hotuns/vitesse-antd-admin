@@ -1,6 +1,6 @@
 <template>
   <div class="sys-setting flex items-center justify-end space-x-4">
-    <div class="cursor-pointer" i="carbon-sun dark:carbon-moon" @click="toggleDark" />
+    <div class="cursor-pointer" i="carbon-sun dark:carbon-moon" @click="toggleDark()" />
 
     <a-dropdown size="small">
       <i-carbon-language />
@@ -39,11 +39,10 @@
 import { Icon } from '@iconify/vue'
 import { navs as myNavs } from './constant'
 import { useUserStore } from '~/store/modules/user'
-import { usePermissioStore } from '~/store/modules/permission'
 import useDarks from '~/composables/useDarks'
 
 const { toggleDark } = useDarks()
-const { t, locale } = useI18n()
+const { locale } = useI18n()
 const localOpts = [
   {
     label: '中文',
@@ -54,23 +53,16 @@ const localOpts = [
     key: 'en',
   },
 ]
-const localeHandleSelect = ({ key }) => {
+const localeHandleSelect = ({ key }: { key: string }) => {
   console.log(key)
   locale.value = key
 }
 
 const store = useUserStore()
-const permissioStore = usePermissioStore()
 const router = useRouter()
 
 const navs = ref(myNavs)
 const selectedKeys = ref<string[]>([])
-
-watchEffect(() => {
-  const modules = permissioStore.getModules
-  if (modules.length && permissioStore.getIsAdmin === 0)
-    navs.value = unref(navs).filter(n => (n.auth ? modules.includes(n.auth) : true))
-})
 
 watchEffect(() => {
   if (router.currentRoute) {

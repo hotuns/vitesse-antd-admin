@@ -3,11 +3,14 @@ import { get, post } from '~/utils/http'
 
 enum URL {
   login = '/v1/user/login',
-  permission = '/v1/user/permission',
+  info = '/v1/account/info',
+  logout = '/v1/user/logout',
 }
 
 const login = async(data: ReqParams) => post<ResResult>({ url: URL.login, data })
 
-const permission = async() => get<ReqAuth>({ url: URL.permission })
+const logout = async() => get<ReqAuth>({ url: URL.logout })
 
-export default { login, permission }
+const getUserInfo = async() => get<ReqAuth>({ url: URL.info })
+
+export default { login, logout, getUserInfo }

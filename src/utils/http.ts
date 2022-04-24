@@ -5,8 +5,6 @@ import type { ResData } from '../api/global'
 import { useUserStoreWithOut } from '../store/modules/user'
 import { getToken } from './auth'
 import { useMessage } from '~/composables/useMessage'
-// import { WhiteList } from './permission';
-// import { usePermissioStoreWithOut } from '~/store/modules/permission';
 
 const { createMessage } = useMessage()
 // baseURL
@@ -20,16 +18,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    // 接口权限拦截
-    // const store = usePermissioStoreWithOut();
-    // const { url = '' } = config;
-    // if (!WhiteList.includes(url) && store.getIsAdmin === 0) {
-    //   if (!store.getAuths.includes(url)) {
-    //     console.log('url', url, store.getIsAdmin);
-    //     return Promise.reject('没有操作权限');
-    //   }
-    // }
-
     // 请求头 token配置
     const token = getToken()
 

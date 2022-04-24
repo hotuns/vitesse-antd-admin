@@ -9,10 +9,6 @@ import './index.less'
 export default defineComponent({
   name: 'BaseMenu',
   props: {
-    theme: {
-      type: String,
-      default: 'light',
-    },
     menuWidth: {
       type: Number,
       default: 208,
@@ -23,10 +19,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const state = reactive<any>({
+    const state = reactive({
       collapsed: false, // default value
-      openKeys: [],
-      selectedKeys: [],
+      openKeys: [] as string[],
+      selectedKeys: [] as string[],
     })
 
     watchEffect(() => {
@@ -51,7 +47,6 @@ export default defineComponent({
             <Menu.SubMenu
               key={item.path}
               title={
-
                 <div className="inline-flex justify-center items-center space-x-1">
                   <span className="ant-menu-item-icon"><Icon icon={item.meta?.icon} ></Icon></span>
                   <span>{item.meta?.title}</span>
@@ -80,17 +75,17 @@ export default defineComponent({
     return function side_menu() {
       return (
         <Layout.Sider
-          width={208}
+          width={props.menuWidth}
           collapsedWidth={54}
           class="my-sideMenu-sider"
-          trigger={null}
+          theme="light"
           breakpoint="lg"
           onBreakpoint={val => (state.collapsed = val)}
           collapsible
           collapsed={state.collapsed}
+          onCollapse={val => (state.collapsed = val)}
         >
           <Menu
-
             theme="light"
             mode="inline"
             selectedKeys={state.selectedKeys}
@@ -101,14 +96,6 @@ export default defineComponent({
           >
             {makeTreeDom(props.menuData)}
           </Menu>
-
-          <div className="collapsed dis absolute right-1 top-1/2 border rounded-1/2 p-2" onClick={() => state.collapsed = !state.collapsed}>
-            {
-              h(Icon, {
-                icon: state.collapsed ? 'carbon:arrow-right' : 'carbon:arrow-left',
-              })
-            }
-          </div>
         </Layout.Sider>
       )
     }

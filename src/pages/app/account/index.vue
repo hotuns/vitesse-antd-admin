@@ -3,7 +3,7 @@ meta:
   layout: default
   title: 用户管理
   icon: carbon:user
-  auth: [home]
+  roles: [admin]
   index: 1
 </route>
 

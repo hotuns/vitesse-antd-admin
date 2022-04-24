@@ -3,6 +3,7 @@ import { setupLayouts } from 'virtual:generated-layouts'
 
 import { createRouter, createWebHistory } from 'vue-router'
 import NProgress from 'nprogress'
+import { getToken } from '~/utils/auth'
 
 const routes = setupLayouts(generatedRoutes)
 
@@ -13,9 +14,34 @@ export const router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
 
-router.beforeEach((to, from) => {
+const whiteList = ['/login', '/']
+
+router.beforeEach((to, from, next) => {
   if (to.path !== from.path)
     NProgress.start()
+
+  if (to.meta.redirect) {
+    return next({
+      path: to.meta.redirect as string,
+    })
+  }
+
+  const hasToken = getToken()
+  if (hasToken) {
+    // 已登录
+    if (to.path === '/login')
+      next({ path: '/' })
+    else
+      next()
+  }
+  else {
+    // 未登录
+    if (whiteList.includes(to.path))
+      next()
+
+    else
+      next('/login')
+  }
 })
 
 router.afterEach(() => { NProgress.done() })

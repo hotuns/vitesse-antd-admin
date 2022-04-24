@@ -3,7 +3,7 @@ meta:
   layout: default
   title: 其他
   icon: carbon:overflow-menu-horizontal
-  auth: [home]
+  roles: [user]
   index: 3
 </route>
 

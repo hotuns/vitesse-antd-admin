@@ -14,26 +14,12 @@ import moment from 'moment'
 import enUS from 'ant-design-vue/es/locale/en_US'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { useTitle } from '~/composables/useTitle'
-import useDarks from '~/composables/useDarks'
 import 'moment/dist/locale/zh-cn'
 
 const { locale } = useI18n()
-const { isDark } = useDarks()
 
 onMounted(() => {
-  console.log(isDark)
-
-  // if (isDark) {
-  //   toggleTheme({
-  //     scopeName: 'theme-dark',
-  //   })
-  // }
-  // else {
-  //   toggleTheme({
-  //     scopeName: 'theme-light',
-  //   })
-  // }
-
+  console.log('my config env: ', import.meta.env)
   // date-picker 国际化失效问题
   // 引入dist下的文件：import 'moment/dist/locale/zh-cn'
   // 确保 moment版本一致
@@ -67,5 +53,4 @@ const antdLocale = computed((): any => {
       return zhCN
   }
 })
-console.log('my config env: ', import.meta.env)
 </script>

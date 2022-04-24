@@ -5,24 +5,20 @@
 
 import intersection from 'lodash-es/intersection'
 import { isArray } from '../utils/is'
-import { usePermissioStore } from '~/store/modules/permission'
+import { useUserStoreWithOut } from '~/store/modules/user'
 
 export function usePermission() {
-  const permissioStore = usePermissioStore()
-
+  const userStore = useUserStoreWithOut()
   function hasPermission(value?: string | string[], def = true): boolean {
     // Visible by default
     if (!value)
       return def
 
-    if (permissioStore.getIsAdmin === 1)
-      return true
-
     if (!isArray(value))
-      return permissioStore.getAuths?.includes(value)
+      return userStore.roles?.includes(value)
 
     if (isArray(value))
-      return intersection(value, permissioStore.getAuths).length > 0
+      return intersection(value, userStore.roles).length > 0
 
     return true
   }

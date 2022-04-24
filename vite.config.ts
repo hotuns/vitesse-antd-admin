@@ -1,6 +1,5 @@
 import path from 'path'
-import type { ConfigEnv, UserConfig } from 'vite'
-import { loadEnv } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Pages from 'vite-plugin-pages'
@@ -22,13 +21,14 @@ import { AntDesignVueResolver, VueUseComponentsResolver } from 'unplugin-vue-com
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
-export default ({ command, mode }: ConfigEnv): UserConfig => {
+export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build'
   console.log(command, mode)
 
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 
   return {
+    base: process.env.VITE_APP_BASE,
     resolve: {
       alias: {
         '~/': `${path.resolve(__dirname, 'src')}/`,
@@ -78,9 +78,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       // https://github.com/antfu/unplugin-vue-components
       Components({
         // allow auto load markdown components under `./src/components/`
-        extensions: ['vue', 'md'],
+        extensions: ['vue'],
         // allow auto import and register components used in markdown
-        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+        include: [/\.vue$/, /\.vue\?vue/],
         dts: 'src/components.d.ts',
         resolvers: [
           IconsResolver(),
@@ -165,6 +165,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       },
     },
 
+    server: {
+      port: parseInt(process.env.VITE_PORT || '3000'),
+    },
+
     // https://github.com/vitest-dev/vitest
     test: {
       include: ['test/**/*.test.ts'],
@@ -174,4 +178,4 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       },
     },
   }
-}
+})
