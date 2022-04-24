@@ -1,1 +1,0 @@
-import{d as r,aZ as c,aY as u,bk as p,o as f,l as i,i as t}from"./index.d2ad968d.js";const l=r({setup(m){const a=c(),s=u();return p(()=>{const{params:e,query:o}=a,{path:n}=e;s.replace({path:`/${n}`,query:o})}),(e,o)=>(f(),i("div"))}});typeof t=="function"&&t(l);export{l as default};
